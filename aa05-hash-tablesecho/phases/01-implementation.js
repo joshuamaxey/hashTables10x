@@ -70,39 +70,39 @@ class HashTable { // get O(1), set O(1), deleteKey O(1)
       }
     }
     this.count++
-  
+
   }
 
 
   read(key) {
     let index = this.hashMod(key);
     if(this.data[index].key !== key){
-      
+
       return undefined
     }
-    
+
       let currPair = this.data[index];
-      while(currPair.key===key){
+      while(currPair){
         currPair = currPair.next;//walk through the key-value pair in this index
         if(currPair.key === key){
          return  currPair.value
         }
       }
-    
-    
-    
+
+
+
 
     return this.data[index].value;
   }
 
 
   resize() {
-    // Your code here 
+    // Your code here
   }
 
 
   delete(key) {
-    // Your code here 
+    // Your code here
   }
 }
 
