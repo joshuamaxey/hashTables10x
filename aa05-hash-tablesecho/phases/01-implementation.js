@@ -75,24 +75,20 @@ class HashTable { // get O(1), set O(1), deleteKey O(1)
 
 
   read(key) {
-    let index = this.hashMod(key);
-    if(this.data[index].key !== key){
+    let index = this.hashMod(key); // This is the index where we will store our key-value pair
 
-      return undefined
+    let currPair = this.data[index]; // currPair is the key-value pair located at this index
+
+    while(currPair){ // While there is a key-value pair located at our index
+
+      if(currPair.key === key){ // Check to see if the key of that key-value pair matches our new key
+
+        return currPair.value // If the key matches our new key, we return the value;
+      }
+      currPair = currPair.next; // If the keys do not match, move to the next key-value pair in the linked list
     }
 
-      let currPair = this.data[index];
-      while(currPair){
-        currPair = currPair.next;//walk through the key-value pair in this index
-        if(currPair.key === key){
-         return  currPair.value
-        }
-      }
-
-
-
-
-    return this.data[index].value;
+    return undefined; // If we search the entire bucket (every key-value pair in the lined list) and do not find the key, return undefined
   }
 
 
