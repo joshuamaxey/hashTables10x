@@ -93,7 +93,11 @@ class HashTable { // get O(1), set O(1), deleteKey O(1)
 
 
   resize() {
-    // Your code here
+    //   this.data.length = this.capacity;
+    let newArr = new Array(this.capacity).fill(null);
+    this.data.concat(newArr);
+    this.capacity = this.capacity*2;
+
   }
 
 
