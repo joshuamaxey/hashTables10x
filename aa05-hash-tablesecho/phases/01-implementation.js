@@ -94,10 +94,31 @@ class HashTable { // get O(1), set O(1), deleteKey O(1)
 
   resize() {
     //   this.data.length = this.capacity;
-    let newArr = new Array(this.capacity).fill(null);
-    this.data.concat(newArr);
-    this.capacity = this.capacity*2;
+    // let newArr = new Array(this.capacity).fill(null);
+    // this.data = this.data.concat(newArr);
+    // this.capacity = this.capacity*2;
 
+    this.capacity *= 2; // double the capacity of our hashTable
+
+    let newArr = new Array(this.capacity).fill(null); // create a new array that is 2x as large, then fill it with null;
+
+    let oldData = this.data; // Save our current data to a variable oldData
+
+    this.data = newArr; // set our this.data to be our new array
+
+    this.count = 0; // initialize a count variable to begin iteration
+
+    for (let i = 0; i < oldData.length; i++) { // iterate through old data
+
+      let current = oldData[i]; // store the key-value pair located at current index of old data array
+
+      while (current) { // While there is a key-value pair located at the current index of the old data array...
+
+        this.insert(current.key, current.value); // ...insert that key-value pair at the same index of the new data array
+
+        current = current.next; // Then move to the next index
+      }
+    }
   }
 
 
